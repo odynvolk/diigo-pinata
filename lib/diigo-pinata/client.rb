@@ -33,6 +33,13 @@ module DiigoPinata
       check_response(resp)
     end
 
+    def add_note(title, content, tags, lists='')
+      data = "title=#{title}&content=#{content}&tags=#{tags}&lists=#{lists}&note_type=text"
+      resp = post('www.diigo.com', '/item/save/note', data)
+
+      check_response(resp)
+    end
+
     private
 
     def check_response(resp)
