@@ -27,6 +27,8 @@ module DiigoPinata
     end
 
     def add_bookmark(url, title, tags, private, description)
+      login unless @cookie
+
       data = "url=#{url}&unread=false&title=#{title}&private=#{private}&description=#{description}&tags=#{tags}"
       resp = post('www.diigo.com', '/item/save/bookmark', data)
 
@@ -34,6 +36,8 @@ module DiigoPinata
     end
 
     def add_note(title, content, tags, lists='')
+      login unless @cookie
+
       data = "title=#{title}&content=#{content}&tags=#{tags}&lists=#{lists}&note_type=text"
       resp = post('www.diigo.com', '/item/save/note', data)
 
